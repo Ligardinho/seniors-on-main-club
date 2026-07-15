@@ -5,11 +5,12 @@ import Link from "next/link"
 import { ArrowRight, Heart, Users, Sparkles, HandHeart, Clock, MapPin } from "lucide-react"
 import { FaqSection } from "@/src/components/FAQ"
 import { SiteShell } from "@/src/components/site-shell"
+import { todaySAST } from "@/src/lib/utils"
 
 export default async function Home() {
   const supabase = await createClient();
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = todaySAST();
 
   const { data: meetups } = await supabase
     .from("activities")
@@ -193,11 +194,11 @@ export default async function Home() {
             <span className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-accent-foreground/85">
               <span className="flex items-center gap-2">
                 <Clock className="size-5 text-primary" aria-hidden="true" />
-                Mon-Sat, 9am-4pm
+                Every Wednesday, 10:00 AM &ndash; 2:00 PM
               </span>
               <span className="flex items-center gap-2">
                 <MapPin className="size-5 text-primary" aria-hidden="true" />
-                124 Main Street
+                675 Main Road, Northdene Queensburgh
               </span>
             </span>
           </div>

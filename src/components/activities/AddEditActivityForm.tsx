@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/src/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { ACTIVITY_OPTIONS } from "@/src/lib/activity-options";
 import { Activity } from "./ActivitiesManager";
+import { todaySAST } from "@/src/lib/utils";
 
 interface Props {
   editingActivity: Activity | null;
@@ -43,6 +44,11 @@ export default function AddEditActivityForm({
   const [loading, setLoading] =
     useState(false);
 
+  const [dateError, setDateError] =
+    useState("");
+
+  const today = useMemo(() => todaySAST(), []);
+
   // Fill the form whenever an activity is selected
   useEffect(() => {
     if (!editingActivity) return;
@@ -74,6 +80,8 @@ export default function AddEditActivityForm({
     setSelectedActivities(
       editingActivity.activities || []
     );
+
+    setDateError("");
   }, [editingActivity]);
 
     function toggleActivity(activity: string) {
@@ -85,6 +93,12 @@ export default function AddEditActivityForm({
   }
 
   async function handleSubmit() {
+    if (meetupDate && meetupDate < today) {
+      setDateError("Activity date cannot be in the past.");
+      return;
+    }
+    setDateError("");
+
     setLoading(true);
 
     const payload = {
@@ -129,6 +143,7 @@ export default function AddEditActivityForm({
     setEndTime("14:00");
     setLocation("Community Hall");
     setCustomActivity("");
+    setDateError("");
 
     setLoading(false);
 
@@ -143,6 +158,7 @@ export default function AddEditActivityForm({
     setLocation("");
     setSelectedActivities([]);
     setCustomActivity("");
+    setDateError("");
   }
 
   return (
@@ -166,11 +182,16 @@ export default function AddEditActivityForm({
         <input
           type="date"
           value={meetupDate}
-          onChange={(e) =>
-            setMeetupDate(e.target.value)
-          }
+          min={today}
+          onChange={(e) => {
+            setMeetupDate(e.target.value);
+            setDateError("");
+          }}
           className="w-full rounded-xl border border-border bg-card p-3 text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/30"
         />
+        {dateError && (
+          <p className="text-sm text-destructive">{dateError}</p>
+        )}
 
 
 

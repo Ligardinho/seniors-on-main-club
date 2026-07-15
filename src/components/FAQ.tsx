@@ -10,7 +10,7 @@ const FAQS = [
   },
   {
     q: "How much does membership cost?",
-    a: "Annual membership is just $30, which includes access to all regular activities. Some special outings and workshops have a small extra charge to cover costs, always announced in advance.",
+    a: "Annual membership is just R60, which includes access to all regular activities. Some special outings and workshops have a small extra charge to cover costs, always announced in advance.",
   },
   {
     q: "Do I need to book activities in advance?",
