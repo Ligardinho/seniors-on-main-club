@@ -5,11 +5,12 @@ import MeetupCard from "@/src/components/activities/MeetupCard";
 import { PageHero } from "@/src/components/Hero";
 import { createClient } from "@/src/lib/supabase/server";
 import { format } from "date-fns";
+import { todaySAST } from "@/src/lib/utils";
 
 export default async function ActivitiesPage() {
   const supabase = await createClient();
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = todaySAST();
 
   const { data: meetups, error } = await supabase
     .from("activities")
