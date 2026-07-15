@@ -4,6 +4,7 @@ import {
   Sun,
   CalendarDays,
   ImageIcon,
+  Mail,
   LogOut,
   ExternalLink,
 } from "lucide-react";
@@ -44,6 +45,16 @@ export default async function DashboardPage() {
       count: "exact",
       head: true,
     });
+
+
+
+  const { count: unreadCount } = await supabase
+    .from("contact_submissions")
+    .select("*", {
+      count: "exact",
+      head: true,
+    })
+    .eq("is_read", false);
 
 
 
@@ -139,7 +150,6 @@ export default async function DashboardPage() {
 
 
 
-
           <div className="rounded-2xl border border-border bg-card p-5">
 
             <p className="text-sm font-semibold text-muted-foreground">
@@ -153,6 +163,25 @@ export default async function DashboardPage() {
 
 
           </div>
+
+
+
+
+
+          <div className="rounded-2xl border border-border bg-card p-5">
+
+            <p className="text-sm font-semibold text-muted-foreground">
+              Unread Messages
+            </p>
+
+
+            <p className="mt-1 font-serif text-3xl font-semibold text-accent">
+              {unreadCount ?? 0}
+            </p>
+
+
+          </div>
+
 
 
 
@@ -253,6 +282,40 @@ export default async function DashboardPage() {
 
               <p className="mt-4 text-muted-foreground">
                 Upload, edit, and delete photos from the club gallery.
+              </p>
+
+
+            </Link>
+
+
+
+
+
+            <Link
+              href="/dashboard/contact"
+              className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:shadow-md"
+            >
+
+              <div className="flex items-center gap-3">
+
+
+                <span className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+
+                  <Mail className="size-6" />
+
+                </span>
+
+
+                <h3 className="font-serif text-xl font-semibold text-accent">
+                  Contact Messages
+                </h3>
+
+
+              </div>
+
+
+              <p className="mt-4 text-muted-foreground">
+                View and respond to messages from the contact form.
               </p>
 
 
