@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  Sun,
   CalendarDays,
   ImageIcon,
   Mail,
@@ -72,14 +72,13 @@ export default async function DashboardPage() {
 
           <div className="flex items-center gap-3">
 
-            <span className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
-
-              <Sun
-                className="size-5"
-                aria-hidden="true"
-              />
-
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Seniors on Main Club"
+              width={40}
+              height={40}
+              className="size-10 rounded-full object-cover"
+            />
 
 
             <div>
@@ -131,7 +130,7 @@ export default async function DashboardPage() {
 
         {/* Stats */}
 
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
 
           <div className="rounded-2xl border border-border bg-card p-5">
@@ -219,7 +218,7 @@ export default async function DashboardPage() {
 
 
 
-          <div className="mt-5 grid gap-6 md:grid-cols-2">
+          <div className="mt-5 grid gap-6 md:grid-cols-3">
 
 
 

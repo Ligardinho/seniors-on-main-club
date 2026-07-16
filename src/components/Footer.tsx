@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Sun, MapPin, Phone, Mail, Clock } from "lucide-react"
+import Image from "next/image"
+import { MapPin, Phone, Mail, Clock } from "lucide-react"
 
 export function Footer() {
   return (
@@ -7,9 +8,13 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-3 md:px-6">
         <div>
           <div className="flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground">
-              <Sun className="size-6" aria-hidden="true" />
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Seniors on Main Club"
+              width={44}
+              height={44}
+              className="size-11 rounded-full object-cover"
+            />
             <span className="font-serif text-lg font-semibold">Seniors on Main Club</span>
           </div>
           <p className="mt-4 max-w-xs leading-relaxed text-accent-foreground/80">

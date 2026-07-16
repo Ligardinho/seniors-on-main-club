@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { createClient } from "@/src/lib/supabase/client";
-import { Lock, Sun, Mail } from "lucide-react";
+import { Lock, Mail } from "lucide-react";
 import Link from "next/link";
 
 
@@ -73,14 +74,13 @@ export default function LoginPage() {
         <div className="flex flex-col items-center text-center">
 
 
-          <span className="flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground">
-
-            <Sun
-              className="size-7"
-              aria-hidden="true"
-            />
-
-          </span>
+          <Image
+            src="/logo.png"
+            alt="Seniors on Main Club"
+            width={56}
+            height={56}
+            className="size-14 rounded-full object-cover"
+          />
 
 
 
