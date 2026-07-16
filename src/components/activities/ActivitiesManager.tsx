@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  Sun,
   ArrowLeft,
   ExternalLink,
 } from "lucide-react";
@@ -67,11 +67,13 @@ export default function ActivitiesManager({
           <div className="flex items-center gap-3">
 
 
-            <span className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
-
-              <Sun className="size-5" />
-
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Seniors on Main Club"
+              width={40}
+              height={40}
+              className="size-10 rounded-full object-cover"
+            />
 
 
             <div>

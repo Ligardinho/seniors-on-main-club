@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Sun } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { cn } from "@/src/lib/utils"
 
 const NAV_LINKS = [
@@ -22,9 +23,13 @@ const Nav = () => {
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground">
-            <Sun className="size-6" aria-hidden="true" />
-          </span>
+          <Image
+            src="/logo.png"
+            alt="Seniors on Main Club"
+            width={44}
+            height={44}
+            className="size-11 rounded-full object-cover"
+          />
           <span className="leading-tight">
             <span className="block font-serif text-lg font-semibold text-accent">Seniors on Main</span>
             <span className="block text-xs font-semibold uppercase tracking-wide text-primary">Community Club</span>
