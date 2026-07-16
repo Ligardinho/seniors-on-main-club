@@ -10,3 +10,12 @@ export function todaySAST(): string {
     timeZone: "Africa/Johannesburg",
   }).format(new Date())
 }
+
+export function nowSAST(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Africa/Johannesburg",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(new Date())
+}

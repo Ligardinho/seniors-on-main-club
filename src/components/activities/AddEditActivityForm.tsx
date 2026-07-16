@@ -5,7 +5,7 @@ import { createClient } from "@/src/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { ACTIVITY_OPTIONS } from "@/src/lib/activity-options";
 import { Activity } from "./ActivitiesManager";
-import { todaySAST } from "@/src/lib/utils";
+import { todaySAST, nowSAST } from "@/src/lib/utils";
 
 interface Props {
   editingActivity: Activity | null;
@@ -48,6 +48,7 @@ export default function AddEditActivityForm({
     useState("");
 
   const today = useMemo(() => todaySAST(), []);
+  const nowTime = useMemo(() => nowSAST(), []);
 
   // Fill the form whenever an activity is selected
   useEffect(() => {
@@ -95,6 +96,10 @@ export default function AddEditActivityForm({
   async function handleSubmit() {
     if (meetupDate && meetupDate < today) {
       setDateError("Activity date cannot be in the past.");
+      return;
+    }
+    if (meetupDate === today && endTime <= nowTime) {
+      setDateError("End time must be in the future.");
       return;
     }
     setDateError("");
